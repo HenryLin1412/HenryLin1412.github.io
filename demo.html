@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>匯率轉換</title>
+        <link rel="stylesheet" href="mystyle.css"> <!--第(3)小題-->
+    </head>
+    <body>
+        <h1>匯率轉換器</h1>
+    
+        <div id="input">
+            <label for="amount">金額（台幣）：</label>
+            <input type="number" id="amount" min="0">
+            
+            <label for="currency">貨幣：</label>
+            <select id="currency">
+                <option value="USD">美元 (USD)</option>
+                <option value="EUR">歐元 (EUR)</option>
+                <option value="JPY">日圓 (JPY)</option>
+                <option value="KRW">韓元 (KRW)</option>
+                <option value="AUD">澳幣 (AUD)</option>
+                <!-- 其他貨幣... -->
+            </select>
+            
+            <button  onclick="convert()">轉換</button>
+            <button  onclick="reset()">重新輸入</button>
+        </div>
+
+        <div id="presentation">
+            <p id="presentation">轉換結果為:</p>
+            <p id="result"></p>
+        </div>
+
+        <div id="description">
+            <p>使用步驟:</p>
+            <ol>
+                <li>於輸入框中輸入想兌換的台幣金額</li>
+                <li>挑選想轉換的幣值</li>
+                <li>按下 [轉換] 按鈕</li>
+                <li>轉換結果將呈現在畫面中</li>
+            </ol>
+            <p id="notice">請注意: 若想更改兌換幣值，請選擇後重新按下[轉換]</p>
+            <p id="source">資料來源: <a href="https://rate.bot.com.tw/xrt">台灣銀行</a></p>
+        </div>
+        <script>
+            //第(1)小題
+            function convert() {
+            var amountInput = document.getElementById("amount");
+            var currencySelect = document.getElementById("currency");
+            var resultDiv = document.getElementById("result");
+            
+            var amount = parseFloat(amountInput.value);
+            var currencyCode = currencySelect.value;
+            
+            //第(5)小題
+            if (isNaN(amount) || amount <= 0) {
+                alert("請輸入正確金額!");
+                reset();
+                return;
+            }//判斷輸入是否正確
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                var xmlDoc = this.responseXML;
+                
+                var currencyElements = xmlDoc.getElementsByTagName("currency");
+                var targetRate = null;
+                for (var i = 0; i < currencyElements.length; i++) {
+                    var code = currencyElements[i].getElementsByTagName("code")[0].textContent;
+                    if (code === currencyCode) {
+                    targetRate = parseFloat(currencyElements[i].getElementsByTagName("rate")[0].textContent);
+                    break;
+                    }
+                }
+                
+                if (targetRate !== null) {
+                    var convertedAmount = amount / targetRate;
+                    resultDiv.textContent = amount + " 台幣 = " + convertedAmount.toFixed(2) + " " + currencyCode;
+                } else {
+                    resultDiv.textContent = "找不到匯率資訊";
+                }
+                }
+            };
+            
+            //第(2)小題
+            xhttp.open("GET", "rate.xml", true);
+            xhttp.send();
+            }
+
+            //第(4)小題
+            function reset() {
+                // 清空金額輸入框
+                document.getElementById("amount").value = "";
+                
+                // 重設貨幣選擇框
+                document.getElementById("currency").selectedIndex = 0;
+                
+                // 清空結果區域
+                document.getElementById("result").textContent = "";
+            }   
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!--第(2)小題-->
+
+<exchangeRates>
+  <currency>
+    <code>USD</code>
+    <rate>30.965</rate>
+  </currency>
+  <currency>
+    <code>EUR</code>
+    <rate>33.46</rate>
+  </currency>
+  <currency>
+    <code>JPY</code>
+    <rate>0.2219</rate>
+  </currency>
+  <currency>
+    <code>KRW</code>
+    <rate>0.0254</rate>
+  </currency>
+  <currency>
+    <code>AUD</code>
+    <rate>20.45</rate>
+  </currency>
+  <!-- 其他貨幣... -->
+</exchangeRates>

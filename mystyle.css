@@ -1,0 +1,80 @@
+/*第(3)小題*/
+
+h1{
+    color: blue;
+    text-align: center;
+}
+
+/*區塊樣式*/
+div{
+    display: grid;
+    grid-template-columns: 0.2fr 0.4fr 0.1fr;
+    grid-template-rows: 40vh;
+    margin: 0;
+}
+#input{
+    display: block;
+    text-align: center;
+    font-size: 28px;
+}
+#description{
+    display: block;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    background-color: thistle;
+}
+#presentation{
+    display: block;
+    text-align: center;
+    height: 100%;
+    font-weight: bolder;
+    background-color: darkseagreen;
+}
+p{
+    display: flex;
+    justify-content: center;
+}
+
+#result{
+    color: red;
+    font-size: 30px;
+}
+#notice{
+    color: purple;
+    font-weight: lighter;
+}
+/* 按鈕樣式 */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+button:active {
+    background-color: #3e8e41;
+}
+/*選擇&輸入框樣式*/
+select{
+    display: inline-block;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-weight: bold;
+}
+input{
+    display: inline-block;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #413d3d;
+    border-radius: 4px;
+    background-color: beige;
+}
